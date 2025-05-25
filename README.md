@@ -1,6 +1,6 @@
-# Spring Boot Employee Payroll System (In-Memory Version)
+# Spring Boot Employee Payroll System with MySQL
 
-Welcome to the Employee Payroll System built with Spring Boot. This project demonstrates CRUD operations for managing employee payroll data using RESTful APIs and in-memory storage (H2 database).
+This is an extended version of the Employee Payroll project using MySQL as the backend database. It supports full CRUD operations through REST APIs with persistent data storage.
 
 ## Table of Contents
 
@@ -8,40 +8,42 @@ Welcome to the Employee Payroll System built with Spring Boot. This project demo
 - [Technologies Used](#technologies-used)
 - [Features](#features)
 - [Project Structure](#project-structure)
-- [API Endpoints](#api-endpoints)
+- [Database Configuration](#database-configuration)
 
 ## Overview
 
-This application provides a backend REST service for managing employee data such as name, salary, gender, and start date. It is ideal for demonstrating Spring Boot fundamentals like REST controllers, services, DTOs, and validation.
+The system manages employee data including name, salary, and department. This version uses MySQL instead of H2, allowing real-world scalability and integration.
 
 ## Technologies Used
 
 - Java 17+
 - Spring Boot
-- Spring Web
+- Spring Data JPA
+- MySQL
 - Lombok
-- H2 Database (In-Memory)
 - Maven
 
 ## Features
 
-- Create, Read, Update, Delete employee records
-- Input validation using annotations
-- In-memory H2 database for quick testing
-- DTO-based architecture
+- Full CRUD with database persistence
+- DTO and model separation
+- Exception handling and input validation
+- Organized service and repository layers
 
 ## Project Structure
 
-- `model` – Employee model class  
-- `dto` – Data Transfer Objects for validation and input
-- `controller` – REST endpoints
-- `service` – Business logic layer
-- `repository` – In-memory data layer
+- `model` – Entity classes  
+- `dto` – DTOs with validation rules  
+- `repository` – MySQL JPA Repositories  
+- `controller` – REST API layer  
+- `service` – Business logic
 
-## API Endpoints
+## Database Configuration
 
-- `GET /employees` – List all employees  
-- `GET /employees/{id}` – Get employee by ID  
-- `POST /employees` – Add new employee  
-- `PUT /employees/{id}` – Update employee  
-- `DELETE /employees/{id}` – Delete employee  
+Update `application.properties`:
+
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/employee_db
+spring.datasource.username=root
+spring.datasource.password=yourpassword
+spring.jpa.hibernate.ddl-auto=update
